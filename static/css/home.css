@@ -1,0 +1,446 @@
+.home-container {
+    padding: 2rem 0;
+}
+
+.hero-section {
+    margin-bottom: 3rem;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 230, 230, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.feature-icon i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.feature-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.feature-desc {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.process-section {
+    margin: 4rem 0;
+}
+
+.section-title {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.process-steps {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.process-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+}
+
+.step-content h5 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.step-content p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.marketplaces-section {
+    margin-top: 4rem;
+}
+
+.marketplace-badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.marketplace-badge {
+    background: rgba(0, 230, 230, 0.1);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.marketplace-badge i {
+    color: var(--primary-color);
+}
+
+/* Comments Section Updates */
+.comment-form {
+    background: rgba(0, 230, 230, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+#cancelReply {
+    transition: all 0.3s ease;
+}
+
+/* Comments List Hierarchy */
+.comments-list {
+    position: relative;
+}
+
+.comment-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.comment-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 230, 230, 0.1);
+}
+
+.comment-item.reply {
+    margin-left: 2.5rem;
+    border-left: 3px solid var(--primary-color);
+    background: rgba(0, 230, 230, 0.03);
+}
+
+.comment-item.reply-level-2 {
+    margin-left: 5rem;
+    border-left-color: rgba(0, 230, 230, 0.7);
+}
+
+.comment-item.reply-level-3 {
+    margin-left: 7.5rem;
+    border-left-color: rgba(0, 230, 230, 0.5);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.comment-author-info {
+    flex: 1;
+}
+
+.comment-author {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+}
+
+.comment-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.comment-time {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.comment-time i {
+    margin-right: 0.25rem;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.comment-action-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.comment-action-btn:hover {
+    background: rgba(0, 230, 230, 0.1);
+    color: var(--primary-color);
+}
+
+.comment-action-btn.reply-btn:hover {
+    color: #0dcaf0;
+}
+
+.comment-action-btn.delete-btn:hover {
+    color: #dc3545;
+}
+
+.comment-body {
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    padding-right: 1rem;
+}
+
+.comment-body p {
+    margin-bottom: 0;
+    white-space: pre-line;
+}
+
+/* Replies Section */
+.replies-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+.replies-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.replies-header i {
+    transition: transform 0.3s ease;
+}
+
+.replies-header.collapsed i {
+    transform: rotate(-90deg);
+}
+
+.replies-count {
+    background: rgba(0, 230, 230, 0.1);
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.replies-container {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.replies-container.collapsed {
+    max-height: 0 !important;
+}
+
+/* Reply Form */
+.reply-form {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(0, 230, 230, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    display: none;
+}
+
+.reply-form.active {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+.reply-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.reply-form-header h6 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.reply-to-info {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.reply-to-info strong {
+    color: var(--primary-color);
+}
+
+.reply-form textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-size: 0.9rem;
+}
+
+.reply-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Comment Badges */
+.comments-section {
+    width: 90%;
+    max-width: 1150px;
+    margin: 0 auto;   /* ✅ center */
+    padding-top: 100px;
+}
+.comment-badge {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.badge-new {
+    background: rgba(25, 135, 84, 0.2);
+    color: #198754;
+}
+
+.badge-updated {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+/* Scrollbar for comments */
+.comments-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.comments-list::-webkit-scrollbar-track {
+    background: rgba(0, 230, 230, 0.05);
+    border-radius: 3px;
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .comment-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .comment-actions {
+        align-self: flex-end;
+    }
+    
+    .comment-item.reply {
+        margin-left: 1.5rem;
+    }
+    
+    .comment-item.reply-level-2 {
+        margin-left: 3rem;
+    }
+    
+    .comment-item.reply-level-3 {
+        margin-left: 4.5rem;
+    }
+    
+    .comment-meta {
+        gap: 0.5rem;
+    }
+    
+    .reply-form-actions {
+        flex-direction: column;
+    }
+    
+    .reply-form-actions .btn {
+        width: 100%;
+    }
+}

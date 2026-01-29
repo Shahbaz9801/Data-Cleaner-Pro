@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+
+{% block title %}Add Product Data - DataClean Pro{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add_data.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="add-data-container">
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header mb-4">
+            <h1 class="page-title">
+                <i class="fas fa-plus-circle me-2"></i>
+                Manage Product Database
+            </h1>
+            <p class="page-subtitle">
+                Add and manage products in the master database
+            </p>
+        </div>
+
+        <!-- Product List Table with Filters -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="mb-0">
+                        <i class="fas fa-table me-2"></i>
+                        Existing Products
+                        <span id="productCount">({{ product_count }})</span>
+                    </h5>
+                    <small class="text-muted">Showing random 50 products. Use filters to find specific products.</small>
+                </div>
+                <div>
+                    <button class="btn btn-sm btn-outline-primary" id="refreshProducts">
+                        <i class="fas fa-sync-alt me-1"></i>Refresh
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Filters Section -->
+            <div class="card-body border-bottom">
+                <h6 class="mb-3"><i class="fas fa-filter me-1"></i>Filter Products</h6>
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label class="form-label small">Brand</label>
+                        <select class="form-select form-select-sm" id="brandFilter">
+                            <option value="">All Brands</option>
+                            {% for brand in brands %}
+                            <option value="{{ brand }}">{{ brand }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label small">Category</label>
+                        <select class="form-select form-select-sm" id="categoryFilter">
+                            <option value="">All Categories</option>
+                            {% for category in categories %}
+                            <option value="{{ category }}">{{ category }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label small">Sub-Category</label>
+                        <select class="form-select form-select-sm" id="subCategoryFilter">
+                            <option value="">All Sub-Categories</option>
+                            {% for sub_category in sub_categories %}
+                            <option value="{{ sub_category }}">{{ sub_category }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label small">SKU</label>
+                        <select class="form-select form-select-sm" id="skuFilter">
+                            <option value="">All SKUs</option>
+                            {% for sku in skus %}
+                            <option value="{{ sku }}">{{ sku }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small">Search</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" id="searchFilter" 
+                                   placeholder="Search in all fields...">
+                            <button class="btn btn-outline-secondary" type="button" id="clearFilters">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex gap-2 mt-4">
+                            <button class="btn btn-sm btn-primary" id="applyFilters">
+                                <i class="fas fa-filter me-1"></i>Apply Filters
+                            </button>
+                            <button class="btn btn-sm btn-outline-secondary" id="resetFilters">
+                                <i class="fas fa-redo me-1"></i>Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <small class="text-muted" id="filterInfo">
+                        Showing random 50 products from total {{ product_count }}
+                    </small>
+                </div>
+            </div>
+            
+            <!-- Products Table -->
+            <div class="card-body">
+                <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                    <table class="table table-hover product-table">
+                        <thead style="position: sticky; top: 0; background: var(--card-bg); z-index: 10;">
+                            <tr>
+                                <th>Brand</th>
+                                <th>Category</th>
+                                <th>Sub-Category</th>
+                                <th>Product Title</th>
+                                <th>SKU</th>
+                                <th>Partner SKU</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                            <!-- Products will be loaded via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <div class="loader-small" id="tableLoader"></div>
+                    <p class="text-muted small mt-2" id="tableMessage">
+                        Loading products...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add New Product Section -->
+        <div class="row">
+            <!-- Single Product Entry -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-plus me-2"></i>
+                            Add Single Product
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="singleProductForm">
+                            <div class="mb-3">
+                                <label class="form-label">Brand *</label>
+                                <input type="text" class="form-control" id="brand" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Category *</label>
+                                <input type="text" class="form-control" id="category" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Sub-Category *</label>
+                                <input type="text" class="form-control" id="subCategory" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Product Title *</label>
+                                <textarea class="form-control" id="productTitle" rows="2" required></textarea>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">SKU *</label>
+                                    <input type="text" class="form-control" id="sku" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Partner SKU *</label>
+                                    <input type="text" class="form-control" id="partnerSku" required>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary px-4" id="addSingleBtn">
+                                    <i class="fas fa-plus me-2"></i>Add Product
+                                </button>
+                                <div class="loader-small mt-2" id="singleLoader" style="display: none;"></div>
+                            </div>
+                        </form>
+                        
+                        <div id="singleSuccess" class="alert alert-success mt-3 d-none" role="alert"></div>
+                        <div id="singleError" class="alert alert-danger mt-3 d-none" role="alert"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bulk Upload -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-upload me-2"></i>
+                            Bulk Upload via CSV
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <div class="file-upload-area-small" id="bulkFileDropArea">
+                                <i class="fas fa-file-csv fa-2x text-primary mb-2"></i>
+                                <h6 class="mb-2">Upload CSV File</h6>
+                                <p class="text-muted small mb-3">Drag & drop or click to browse</p>
+                                <button class="btn btn-outline-primary btn-sm" id="browseBulkBtn">
+                                    <i class="fas fa-folder-open me-1"></i>Browse CSV
+                                </button>
+                                <input class="form-control d-none" type="file" id="bulkFileInput" accept=".csv">
+                            </div>
+                            
+                            <div id="bulkFileInfo" class="file-info-card-small mt-3" style="display: none;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1"><i class="fas fa-file-csv me-1"></i>Selected File</h6>
+                                        <div id="bulkFileDetails" class="small text-muted"></div>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-danger" id="clearBulkFileBtn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h6 class="mb-3">CSV Format Requirements:</h6>
+                            <ul class="small text-muted">
+                                <li>Required columns: Brand, Category, Sub-Category, Product Titles, SKU, Partner SKU</li>
+                                <li>SKU must be unique</li>
+                                <li>File must be in UTF-8 encoding</li>
+                                <li>Maximum file size: 16MB</li>
+                            </ul>
+                            
+                            <div class="text-center">
+                                <a href="/api/template/product" class="btn btn-outline-secondary btn-sm" id="downloadTemplate">
+                                    <i class="fas fa-download me-1"></i>Download CSV Template
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button class="btn btn-success px-4" id="uploadBulkBtn" disabled>
+                                <i class="fas fa-upload me-2"></i>Upload & Process
+                            </button>
+                            <div class="loader-small mt-2" id="bulkLoader" style="display: none;"></div>
+                        </div>
+                        
+                        <div id="bulkSuccess" class="alert alert-success mt-3 d-none" role="alert"></div>
+                        <div id="bulkError" class="alert alert-danger mt-3 d-none" role="alert"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/add_data.js') }}"></script>
+{% endblock %}

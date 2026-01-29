@@ -1,0 +1,28 @@
+project/
+│
+├── app.py                      (मुख्य Flask backend)
+├── product.csv                 (मास्टर डेटा)
+├── your_cleaning_script.py     (क्लीनिंग लॉजिक)
+│
+├── templates/
+│   ├── base.html               (बेस टेम्पलेट)
+│   ├── index.html              (होम पेज)
+│   ├── cleaning.html           (क्लीनिंग पेज)
+│   └── add_data.html           (एड डेटा पेज)
+│
+├── static/
+│   ├── css/
+│   │   ├── style.css           (कॉमन CSS)
+│   │   ├── home.css            (होम पेज CSS)
+│   │   ├── cleaning.css        (क्लीनिंग पेज CSS)
+│   │   └── add_data.css        (एड डेटा पेज CSS)
+│   │
+│   ├── js/
+│   │   ├── main.js             (कॉमन JS)
+│   │   ├── cleaning.js         (क्लीनिंग पेज JS)
+│   │   └── add_data.js         (एड डेटा पेज JS)
+│   │
+│   └── images/
+│       └── logo.png            (लोगो)
+│
+└── uploads/                    (अपलोड फाइल्स)

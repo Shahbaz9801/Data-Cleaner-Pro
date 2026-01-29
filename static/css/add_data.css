@@ -1,0 +1,270 @@
+.add-data-container {
+    padding: 1rem 0;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.product-table th {
+    background: rgba(0, 230, 230, 0.1);
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 12px 15px;
+    border-bottom: 2px solid var(--primary-color);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.product-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    vertical-align: middle;
+}
+
+.product-table tbody tr:hover {
+    background: rgba(0, 230, 230, 0.05);
+}
+
+/* Form Styles */
+.form-label {
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    background: var(--darker-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background: var(--darker-bg);
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 0.25rem rgba(0, 230, 230, 0.25);
+}
+
+.form-control::placeholder {
+    color: var(--text-secondary);
+}
+
+/* File Upload Small */
+.file-upload-area-small {
+    border: 2px dashed var(--border-color);
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: rgba(0, 230, 230, 0.02);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.file-upload-area-small:hover {
+    border-color: var(--primary-color);
+    background: rgba(0, 230, 230, 0.05);
+}
+
+.file-upload-area-small.dragover {
+    border-color: var(--primary-color);
+    background: rgba(0, 230, 230, 0.1);
+}
+
+.file-info-card-small {
+    background: rgba(0, 230, 230, 0.03);
+    border-left: 3px solid var(--primary-color);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* Success/Error Alerts */
+.alert-success {
+    background: rgba(25, 135, 84, 0.1);
+    border: 1px solid rgba(25, 135, 84, 0.2);
+    color: #d1e7dd;
+}
+
+.alert-danger {
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.2);
+    color: #f8d7da;
+}
+
+/* Button Groups */
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Badges */
+.badge {
+    padding: 0.35em 0.65em;
+    font-weight: 500;
+}
+
+/* Table Actions */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Text Areas */
+textarea.form-control {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Requirements List */
+ul.small {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+ul.small li {
+    margin-bottom: 0.5rem;
+}
+
+/* Template Download */
+#downloadTemplate {
+    text-decoration: none;
+}
+
+#downloadTemplate:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .table-responsive {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        overflow: auto;
+    }
+    
+    .product-table {
+        min-width: 800px;
+    }
+}
+
+/* Filters Section */
+.border-bottom {
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+.form-select-sm {
+    background: var(--darker-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    padding: 0.25rem 2.25rem 0.25rem 0.5rem;
+}
+
+.form-select-sm:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 230, 230, 0.25);
+}
+
+.form-select-sm option {
+    background: var(--card-bg);
+    color: var(--text-primary);
+}
+
+.input-group-sm {
+    height: 31px;
+}
+
+.input-group-sm .form-control {
+    background: var(--darker-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    height: 31px;
+}
+
+.input-group-sm .btn {
+    height: 31px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Table with fixed header */
+.table-responsive {
+    position: relative;
+}
+
+.product-table thead th {
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    z-index: 10;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.product-table tbody tr {
+    cursor: default;
+}
+
+.product-table tbody tr:hover {
+    background: rgba(0, 230, 230, 0.05);
+}
+
+/* Filter info text */
+#filterInfo {
+    display: block;
+    font-size: 0.85rem;
+}
+
+/* Filter buttons */
+.d-flex.gap-2 {
+    gap: 0.5rem !important;
+}
+
+/* Table message */
+#tableMessage {
+    font-size: 0.9rem;
+}
+
+/* Scrollbar for table */
+.table-responsive::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: rgba(0, 230, 230, 0.05);
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .table-responsive {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+    }
+    
+    .filter-section .col-md-3 {
+        margin-bottom: 1rem;
+    }
+    
+    .d-flex.gap-2 {
+        justify-content: center;
+    }
+}

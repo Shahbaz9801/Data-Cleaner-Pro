@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% block title %}Home - DataClean Pro{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section text-center py-5">
+            <h1 class="display-4 mb-3">
+                <i class="fas fa-database text-primary me-2"></i>
+                Welcome to DataClean Pro
+            </h1>
+            <p class="lead text-muted mb-4">
+                Professional sales data cleaning tool for marketplaces
+            </p>
+        </div>
+
+        <!-- Features -->
+        <div class="row mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h4 class="feature-title">Data Cleaning</h4>
+                    <p class="feature-desc">
+                        Clean and standardize sales data from multiple marketplaces
+                        like Amazon, Noon, Revibe, Talabat, and Careem.
+                    </p>
+                    <a href="/cleaning" class="btn btn-outline-primary">Start Cleaning</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <h4 class="feature-title">Add Product Data</h4>
+                    <p class="feature-desc">
+                        Add new products to the master database. Single entry or
+                        bulk upload via CSV. Automatically maps SKUs during cleaning.
+                    </p>
+                    <a href="/add-data" class="btn btn-outline-primary">Manage Products</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h4 class="feature-title">Download & Export</h4>
+                    <p class="feature-desc">
+                        Download cleaned data in CSV format. Preview all rows before
+                        downloading. Easy integration with other tools.
+                    </p>
+                    <a href="/cleaning" class="btn btn-outline-primary">Try Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="process-section">
+            <h2 class="section-title text-center mb-5">
+                <i class="fas fa-cogs me-2"></i>How It Works
+            </h2>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5>Upload Raw Data</h5>
+                        <p>Upload your sales data file (CSV or Excel) from any supported marketplace.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h5>Select Marketplace</h5>
+                        <p>Choose the marketplace source (Amazon, Noon, Revibe, etc.) for proper cleaning rules.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h5>Automated Cleaning</h5>
+                        <p>System automatically cleans, standardizes, and enriches data using master product database.</p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h5>Download & Use</h5>
+                        <p>Download cleaned data in standardized format ready for analysis or reporting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Supported Marketplaces -->
+        <div class="marketplaces-section mt-5">
+            <h2 class="section-title text-center mb-4">
+                <i class="fas fa-store me-2"></i>Supported Marketplaces
+            </h2>
+            
+            <div class="marketplace-badges">
+                <span class="marketplace-badge">
+                    <i class="fab fa-amazon me-2"></i>Amazon
+                </span>
+                <span class="marketplace-badge">
+                    <i class="fas fa-sun me-2"></i>Noon
+                </span>
+                <span class="marketplace-badge">
+                    <i class="fas fa-recycle me-2"></i>Revibe
+                </span>
+                <span class="marketplace-badge">
+                    <i class="fas fa-motorcycle me-2"></i>Talabat
+                </span>
+                <span class="marketplace-badge">
+                    <i class="fas fa-car me-2"></i>Careem
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Comments & Suggestions Section -->
+<div class="comments-section">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">
+                <i class="fas fa-comments me-2"></i>
+                Comments & Suggestions
+            </h4>
+            <button class="btn btn-sm btn-outline-primary" id="refreshComments">
+                <i class="fas fa-sync-alt me-1"></i>Refresh
+            </button>
+        </div>
+        <div class="card-body">
+            <!-- Comment Form -->
+            <div class="comment-form mb-4">
+                <h5 class="mb-3">
+                    <i class="fas fa-pen me-2"></i>
+                    Share Your Feedback
+                </h5>
+                <form id="commentForm">
+                    <input type="hidden" id="parentCommentId" value="">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Your Name *</label>
+                            <input type="text" class="form-control" id="commentName" required
+                                   placeholder="Enter your name">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label" id="commentLabel">Your Comment/Suggestion *</label>
+                            <textarea class="form-control" id="commentText" rows="3" 
+                                      placeholder="Share your feedback, suggestions, or report issues..." 
+                                      required></textarea>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" 
+                                    id="cancelReply" style="display: none;">
+                                <i class="fas fa-times me-1"></i>Cancel Reply
+                            </button>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary" id="submitCommentBtn">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                <span id="submitBtnText">Submit Comment</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Comments List -->
+            <div class="comments-list">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">Recent Comments</h5>
+                    <div class="small text-muted" id="commentsCount">Loading...</div>
+                </div>
+                
+                <div id="commentsContainer">
+                    <div class="text-center py-4">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="text-muted mt-2">Loading comments...</p>
+                    </div>
+                </div>
+                
+                <!-- No Comments Message Template -->
+                <div id="noCommentsTemplate" class="d-none">
+                    <div class="text-center text-muted py-5">
+                        <i class="fas fa-comment-slash fa-3x mb-3 opacity-25"></i>
+                        <h5 class="mb-2">No Comments Yet</h5>
+                        <p>Be the first to share your feedback!</p>
+                    </div>
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-primary" id="loadMoreComments" style="display: none;">
+                        <i class="fas fa-chevron-down me-1"></i>Load More Comments
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}
